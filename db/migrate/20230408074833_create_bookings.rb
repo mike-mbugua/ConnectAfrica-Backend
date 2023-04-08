@@ -5,6 +5,7 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.integer :phone
       t.date :date
       t.integer :guests
+      t.integer :total
 
       t.timestamps
     end

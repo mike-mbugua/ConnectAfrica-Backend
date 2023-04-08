@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_08_081504) do
     t.integer "phone"
     t.date "date"
     t.integer "guests"
+    t.integer "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
