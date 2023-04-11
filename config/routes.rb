@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
   post '/login',to:  'auth#create'
   get '/profile', to: 'users#profile'
-  get 'tour/search', to: 'tours#search'
+  post 'tours/search', to: 'tours#search'
 end

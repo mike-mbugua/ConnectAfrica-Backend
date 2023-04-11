@@ -1,4 +1,5 @@
 class ToursController < ApplicationController
+    skip_before_action :authorized , only:[:index,:search,:show,:create,:update]
 
     def index
         tour= Tour.all
@@ -6,10 +7,19 @@ class ToursController < ApplicationController
     end
 
 
+
     def search
-        tour = Tour.search_by_title_and_city(params[:query])
-        render json: tour
+        query = params[:query]
+        tours = Tour.search_by_title_and_city(query).where('price <= ?', query.to_f).where(featured: true)
+        render json: tours
     end
+
+
+
+    # def search
+    #     tour = Tour.search_by_title_and_city(params[:city])
+    #     render json: tour
+    # end
 
     def show
         tour = Tour.find_by(params[:id])
@@ -17,7 +27,7 @@ class ToursController < ApplicationController
     end
 
     def update
-        tour=Tour.find_by(params[:id])
+        tour = Tour.where(id: params[:id]).first
         tour.update(tour_params)
         render json: tour, status: :ok
     end
@@ -34,6 +44,6 @@ class ToursController < ApplicationController
 
     private
     def tour_params
-        params.permit(:image, :title,:city,:distance,:price,:maxGroupSize,:description,:rating,:featured)
+        params.permit(:image, :title, :city, :distance, :price, :maxGroupSize, :description, :rating, :featured)
     end
 end
