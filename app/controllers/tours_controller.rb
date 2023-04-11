@@ -5,6 +5,12 @@ class ToursController < ApplicationController
         render json: tour ,status: :ok 
     end
 
+
+    def search
+        tour = Tour.search_by_title_and_city(params[:query])
+        render json: tour
+    end
+
     def show
         tour = Tour.find_by(params[:id])
         render json: tour, status: :found
