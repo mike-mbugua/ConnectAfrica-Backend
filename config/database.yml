@@ -25,4 +25,6 @@ test:
 
 production:
   <<: *default
+  database: render_deploy_production
+  username: render_deploy
   url: <%= ENV["DATABASE_URL"] %>
