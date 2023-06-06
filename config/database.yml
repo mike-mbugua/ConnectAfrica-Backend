@@ -8,8 +8,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: localhost
-  username: michael_mbugua
-  password: 123mike
+  username: quinawear
+  password: 123quinawear
   pool: 5
 
 development:
